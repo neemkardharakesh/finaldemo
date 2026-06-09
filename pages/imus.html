@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMUs | EXOSUITES</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2 class="logo-text">EXOSUITES</h2>
+        <p class="institute">CSIR-CMERI</p>
+
+        <button id="theme-toggle" class="theme-btn">
+            🌙 Toggle Theme
+        </button>
+
+        <input
+            type="text"
+            placeholder="Search..."
+            class="search-box">
+
+        <nav class="docs-nav">
+
+            <a href="../index.html">Home</a>
+
+            <a href="about.html">
+                Getting Started
+            </a>
+
+            <div class="nav-group">
+
+                <button class="dropdown-btn">
+                    Methodology
+                    <span>⌃</span>
+                </button>
+
+                <div class="dropdown-content">
+
+                    <a href="actuators.html">Actuators</a>
+
+                    <a href="single_board_computers.html">
+                        Single Board Computers
+                    </a>
+
+                    <a href="imus.html" class="active">
+                        IMUs
+                    </a>
+
+                    <a href="mechatronics.html">
+                        Mechatronics
+                    </a>
+
+                    <a href="python_environment.html">
+                        Python Environment
+                    </a>
+
+                    <a href="visualization.html">
+                        Visualization
+                    </a>
+
+                </div>
+
+            </div>
+
+            <a href="publications.html">
+                Publications
+            </a>
+
+            <a href="results.html">
+                Results
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+
+        <section>
+
+            <h1>IMUs</h1>
+
+            <p>
+                This section handles all setup steps needed for the supported
+                IMU types: MicroStrain, OpenIMU, and MPU-9250.
+                Although each one requires a different configuration method,
+                EXOSUITES makes interacting with them through Python
+                essentially identical. You can also use any combination of
+                these sensors together in the same setup without issues.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>MicroStrain</h2>
+
+            <p>
+                The low-level driver library for MicroStrain IMUs is maintained
+                by HBK MicroStrain and is routinely updated.
+                However, the installation is not automatically included with
+                the EXOSUITES installation.
+            </p>
+
+            <p>
+                EXOSUITES can still be used without it, though the
+                MicroStrain-specific IMU functions and tools will not
+                be available.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>Using the EXOSUITES MSCL Installation Helper</h2>
+
+            <p>
+                EXOSUITES includes a helper script that automatically installs
+                the MSCL dependency.
+            </p>
+
+            <p>
+                Run:
+            </p>
+
+            <pre>
+ep-install-mscl
+            </pre>
+
+            <p>
+                To install into a virtual environment:
+            </p>
+
+            <pre>
+ep-install-mscl -E
+            </pre>
+
+            <p>
+                After installation, all MicroStrain IMU functionality
+                becomes available.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>Manual MSCL Installation</h2>
+
+            <p>
+                Download the appropriate MSCL package and install it using:
+            </p>
+
+            <pre>
+sudo dpkg -i MSCL_<architecture>_Python<version>_v<release>.deb
+            </pre>
+
+            <p>
+                If you use a virtual environment, copy the files into
+                the environment:
+            </p>
+
+            <pre>
+cp /usr/share/python3.<version>/dist-packages/*mscl* <path/to/env>
+            </pre>
+
+            <p>
+                Verify communication using:
+            </p>
+
+            <pre>
+ep-stream-microstrain-imu --imu-serial-id [SERIAL_ID]
+            </pre>
+
+            <p>
+                Replace SERIAL_ID with the final six digits of the
+                IMU serial number.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>OpenIMU</h2>
+
+            <p>
+                OpenIMUs require per-unit setup but provide excellent
+                documentation and support resources.
+            </p>
+
+            <p>
+                These devices communicate using CAN and should follow
+                the CAN configuration instructions for your
+                single-board computer.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>Flashing New OpenIMUs</h2>
+
+            <ol>
+
+                <li>Connect OpenIMU to a computer using UART.</li>
+
+                <li>Provide 12–24V power.</li>
+
+                <li>Use an RS232-to-USB adapter.</li>
+
+                <li>Download the latest firmware.</li>
+
+                <li>Open Google Chrome.</li>
+
+                <li>Launch ACEINNA Development Studio.</li>
+
+                <li>Select "Get Started".</li>
+
+                <li>Download the ACEINNA Web Server.</li>
+
+                <li>Run the server and install firmware.</li>
+
+            </ol>
+
+        </section>
+
+        <section>
+
+            <h2>MPU-9250</h2>
+
+            <p>
+                The MPU-9250 IMU series is easy to use but requires
+                proper I2C bus configuration before operation.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>Checking I2C on NVIDIA Jetson Orin Nano</h2>
+
+            <p>
+                Scan the I2C bus using:
+            </p>
+
+            <pre>
+i2cdetect -y -r 7
+            </pre>
+
+            <p>
+                For the second bus:
+            </p>
+
+            <pre>
+i2cdetect -y -r 1
+            </pre>
+
+            <p>
+                If required:
+            </p>
+
+            <pre>
+sudo i2cdetect -y -r 7
+            </pre>
+
+        </section>
+
+        <section>
+
+            <h2>Configuring I2C on Raspberry Pi</h2>
+
+            <ol>
+
+                <li>Open Raspberry Pi Configuration.</li>
+
+                <li>Or run:</li>
+
+            </ol>
+
+            <pre>
+sudo raspi-config
+            </pre>
+
+            <ol start="3">
+
+                <li>Select Interface Options.</li>
+
+                <li>Select I2C.</li>
+
+                <li>Enable I2C.</li>
+
+                <li>Save settings.</li>
+
+                <li>Restart the Raspberry Pi.</li>
+
+            </ol>
+
+        </section>
+
+        <section>
+
+            <h2>Verification Checklist</h2>
+
+            <ul>
+
+                <li>MSCL installed successfully.</li>
+
+                <li>MicroStrain IMU detected.</li>
+
+                <li>OpenIMU firmware updated.</li>
+
+                <li>CAN communication functioning.</li>
+
+                <li>I2C interface enabled.</li>
+
+                <li>MPU-9250 detected correctly.</li>
+
+                <li>All IMUs communicating with EXOSUITES.</li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>

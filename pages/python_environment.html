@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Environment | EXOSUITES</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+```
+<h2 class="logo-text">EXOSUITES</h2>
+<p class="institute">CSIR-CMERI</p>
+
+<button id="theme-toggle" class="theme-btn">
+    🌙 Toggle Theme
+</button>
+
+<input type="text" placeholder="Search..." class="search-box">
+
+<nav class="docs-nav">
+
+    <a href="../index.html">Home</a>
+
+    <a href="about.html">Getting Started</a>
+
+    <div class="nav-group">
+
+        <button class="dropdown-btn">
+            Methodology
+            <span>⌃</span>
+        </button>
+
+        <div class="dropdown-content">
+
+            <a href="actuators.html">Actuators</a>
+
+            <a href="single_board_computers.html">
+                Single Board Computers
+            </a>
+
+            <a href="imus.html">IMUs</a>
+
+            <a href="mechatronics.html">Mechatronics</a>
+
+            <a href="python_environment.html" class="active">
+                Python Environment
+            </a>
+
+            <a href="visualization.html">
+                Visualization
+            </a>
+
+        </div>
+
+    </div>
+
+    <a href="publications.html">Publications</a>
+
+    <a href="results.html">Results</a>
+
+</nav>
+```
+
+</aside>
+
+<main class="content">
+
+```
+<section>
+
+    <h1>Python Environment</h1>
+
+    <p>
+        Python virtual environments are highly recommended when working
+        with EXOSUITES. Virtual environments isolate project dependencies,
+        prevent package conflicts, and make development significantly easier.
+    </p>
+
+    <p>
+        While EXOSUITES can be installed directly into the system Python
+        environment, we strongly recommend using either Conda or venv
+        for managing packages and dependencies.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Why Use Virtual Environments?</h2>
+
+    <ul>
+
+        <li>Avoid dependency conflicts.</li>
+
+        <li>Keep projects isolated.</li>
+
+        <li>Easy package management.</li>
+
+        <li>Simple environment recreation.</li>
+
+        <li>Safer software development.</li>
+
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>Conda</h2>
+
+    <p>
+        Conda is one of the most popular tools for managing Python
+        environments. Unlike standard virtual environments,
+        Conda allows users to easily select Python versions and
+        manage complex dependencies.
+    </p>
+
+    <p>
+        Recommended Conda distributions:
+    </p>
+
+    <ul>
+
+        <li>Miniforge (Recommended)</li>
+
+        <li>Miniconda</li>
+
+        <li>Micromamba</li>
+
+        <li>Anaconda</li>
+
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>Installing Miniforge</h2>
+
+    <p>
+        Download the installer corresponding to your system architecture.
+    </p>
+
+    <p>
+        For Raspberry Pi and Jetson Orin Nano, use:
+    </p>
+
+    <pre>
+```
+
+aarch64 </pre>
+
+```
+    <p>
+        Install using:
+    </p>
+
+    <pre>
+```
+
+bash Miniforge3-$(uname)-$(uname -m).sh </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Creating a Conda Environment</h2>
+
+    <p>
+        Create a new environment:
+    </p>
+
+    <pre>
+```
+
+conda create -n exosuites python=3.10 </pre>
+
+```
+    <p>
+        Activate the environment:
+    </p>
+
+    <pre>
+```
+
+conda activate exosuites </pre>
+
+```
+    <p>
+        Deactivate the environment:
+    </p>
+
+    <pre>
+```
+
+conda deactivate </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Installing EXOSUITES</h2>
+
+    <p>
+        Once the environment is active:
+    </p>
+
+    <pre>
+```
+
+pip install exosuites </pre>
+
+```
+    <p>
+        All required package dependencies will be installed automatically.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Installing Additional Packages</h2>
+
+    <p>
+        Conda environments fully support pip installations.
+    </p>
+
+    <pre>
+```
+
+pip install numpy
+pip install scipy
+pip install matplotlib
+pip install opencv-python </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Using venv</h2>
+
+    <p>
+        Python provides built-in virtual environment support through venv.
+        This is lightweight and available on nearly all Python installations.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Installing venv</h2>
+
+    <p>
+        On Ubuntu-based systems:
+    </p>
+
+    <pre>
+```
+
+sudo apt install python3-venv </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Creating a venv Environment</h2>
+
+    <p>
+        Create a virtual environment:
+    </p>
+
+    <pre>
+```
+
+python3 -m venv venv </pre>
+
+```
+    <p>
+        This creates a folder named:
+    </p>
+
+    <pre>
+```
+
+venv/ </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Activating venv</h2>
+
+    <p>
+        Activate the environment:
+    </p>
+
+    <pre>
+```
+
+source venv/bin/activate </pre>
+
+```
+    <p>
+        After activation, your terminal prompt will display:
+    </p>
+
+    <pre>
+```
+
+(venv) </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Deactivating venv</h2>
+
+    <pre>
+```
+
+deactivate </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Recommended Setup</h2>
+
+    <div class="warning-box">
+
+        <strong>💡 Recommendation</strong>
+
+        <p>
+            For EXOSUITES development we recommend:
+        </p>
+
+        <ul>
+
+            <li>Miniforge</li>
+
+            <li>Python 3.10 or newer</li>
+
+            <li>Dedicated Conda environment</li>
+
+            <li>pip installation inside the environment</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Verification Checklist</h2>
+
+    <ul>
+
+        <li>Python 3.9+ installed.</li>
+
+        <li>Virtual environment created.</li>
+
+        <li>Environment activated.</li>
+
+        <li>EXOSUITES installed.</li>
+
+        <li>Dependencies installed successfully.</li>
+
+        <li>Ready for development.</li>
+
+    </ul>
+
+</section>
+```
+
+</main>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

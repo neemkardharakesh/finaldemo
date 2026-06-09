@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Board Computers | EXOSUITES</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+```
+<h2 class="logo-text">EXOSUITES</h2>
+<p class="institute">CSIR-CMERI</p>
+
+<button id="theme-toggle" class="theme-btn">
+    🌙 Toggle Theme
+</button>
+
+<input type="text" placeholder="Search..." class="search-box">
+
+<nav class="docs-nav">
+
+    <a href="../index.html">Home</a>
+
+    <a href="about.html">Getting Started</a>
+
+    <div class="nav-group">
+
+        <button class="dropdown-btn">
+            Methodology
+            <span>⌃</span>
+        </button>
+
+        <div class="dropdown-content">
+
+            <a href="actuators.html">Actuators</a>
+
+            <a href="single_board_computers.html" class="active">
+                Single Board Computers
+            </a>
+
+            <a href="imus.html">IMUs</a>
+
+            <a href="mechatronics.html">Mechatronics</a>
+
+            <a href="python_environment.html">
+                Python Environment
+            </a>
+
+            <a href="visualization.html">
+                Visualization
+            </a>
+
+        </div>
+
+    </div>
+
+    <a href="publications.html">Publications</a>
+    <a href="results.html">Results</a>
+
+</nav>
+```
+
+</aside>
+
+<main class="content">
+
+```
+<section>
+
+    <h1>Single Board Computers</h1>
+
+    <p>
+        This library is designed to be used on Linux computers,
+        typically with GPIO capability. The primary supported
+        platforms are Raspberry Pi and NVIDIA Jetson Orin Nano.
+        These devices provide the processing power required for
+        robotic control, sensing, machine learning, and
+        communication with EXOSUITES hardware.
+    </p>
+
+    <div class="warning-box">
+
+        <strong>⚠ Attention</strong>
+
+        <p>
+            Please read through the entire section for your selected
+            device before beginning setup.
+        </p>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Raspberry Pi</h2>
+
+    <h3>Required Components</h3>
+
+    <ul>
+        <li>Raspberry Pi</li>
+        <li>MicroSD Card</li>
+        <li>Computer with Raspberry Pi Imager</li>
+        <li>CAN HAT</li>
+        <li>HDMI Cable</li>
+        <li>Keyboard + Mouse</li>
+        <li>Monitor</li>
+        <li>Power Supply</li>
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>Basic Setup</h2>
+
+    <p>
+        Install Raspberry Pi OS using Raspberry Pi Imager.
+        The Desktop version is recommended for beginners
+        because it provides a graphical user interface and
+        development tools.
+    </p>
+
+    <p>
+        Complete the operating system setup, connect to Wi-Fi,
+        and update all packages before continuing.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Set Up CAN Bus Capability</h2>
+
+    <p>
+        If you plan to use CAN-enabled actuators, install and
+        configure a CAN HAT such as PiCAN2, PiCAN3, or
+        Waveshare CAN HAT.
+    </p>
+
+    <pre>
+```
+
+dtparam=spi=on
+dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25 </pre>
+
+```
+    <p>
+        Save the configuration file and reboot the Raspberry Pi.
+        Verify that the CAN interface is detected successfully.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Jetson Orin Nano</h2>
+
+    <h3>Required Components</h3>
+
+    <ul>
+        <li>Jetson Orin Nano</li>
+        <li>MicroSD Card</li>
+        <li>CAN Transceiver</li>
+        <li>DisplayPort Cable</li>
+        <li>Keyboard + Mouse</li>
+        <li>Monitor</li>
+        <li>Power Supply</li>
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>Jetson Basic Setup</h2>
+
+    <ol>
+
+        <li>
+            Flash JetPack OS onto a MicroSD card.
+        </li>
+
+        <li>
+            Insert the card into the Jetson and complete
+            first boot configuration.
+        </li>
+
+        <li>
+            Connect to the internet and install updates.
+        </li>
+
+        <li>
+            Install ROS 2, Python dependencies,
+            and EXOSUITES software.
+        </li>
+
+    </ol>
+
+</section>
+
+<section>
+
+    <h2>Enable CAN Communication</h2>
+
+    <p>
+        Connect a CAN transceiver to the Jetson CAN interface.
+        Verify that the CAN device is detected before
+        connecting actuators.
+    </p>
+
+    <div class="caution-box">
+
+        <strong>⚠ Caution</strong>
+
+        <p>
+            Be careful when accessing the carrier board.
+            Avoid damaging the fan cable and GPIO connectors.
+        </p>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Verification Checklist</h2>
+
+    <ul>
+
+        <li>Operating System boots successfully.</li>
+
+        <li>Internet connection is working.</li>
+
+        <li>CAN interface is detected.</li>
+
+        <li>Python environment is configured.</li>
+
+        <li>EXOSUITES software is installed.</li>
+
+        <li>Device is ready for actuator integration.</li>
+
+    </ul>
+
+</section>
+```
+
+</main>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

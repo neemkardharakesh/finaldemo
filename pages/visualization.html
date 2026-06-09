@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization | EXOSUITES</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+```
+<h2 class="logo-text">EXOSUITES</h2>
+<p class="institute">CSIR-CMERI</p>
+
+<button id="theme-toggle" class="theme-btn">
+    🌙 Toggle Theme
+</button>
+
+<input type="text" placeholder="Search..." class="search-box">
+
+<nav class="docs-nav">
+
+    <a href="../index.html">Home</a>
+
+    <a href="about.html">Getting Started</a>
+
+    <div class="nav-group">
+
+        <button class="dropdown-btn">
+            Methodology
+            <span>⌃</span>
+        </button>
+
+        <div class="dropdown-content">
+
+            <a href="actuators.html">Actuators</a>
+
+            <a href="single_board_computers.html">
+                Single Board Computers
+            </a>
+
+            <a href="imus.html">IMUs</a>
+
+            <a href="mechatronics.html">Mechatronics</a>
+
+            <a href="python_environment.html">
+                Python Environment
+            </a>
+
+            <a href="visualization.html" class="active">
+                Visualization
+            </a>
+
+        </div>
+
+    </div>
+
+    <a href="publications.html">Publications</a>
+
+    <a href="results.html">Results</a>
+
+</nav>
+```
+
+</aside>
+
+<main class="content">
+
+```
+<section>
+
+    <h1>Visualization</h1>
+
+    <p>
+        EXOSUITES recommends using PlotJuggler for most real-time
+        robotics data visualization. PlotJuggler is widely used within
+        the robotics and ROS communities and provides powerful tools
+        for plotting time-series data.
+    </p>
+
+    <p>
+        EXOSUITES includes built-in client functionality that allows
+        controllers to stream data directly to PlotJuggler over a
+        local network connection.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Installing PlotJuggler</h2>
+
+    <p>
+        PlotJuggler can be installed on the robot itself or on a
+        separate computer connected to the same network.
+    </p>
+
+    <p>
+        Linux and Windows are officially supported. macOS users
+        can build PlotJuggler from source.
+    </p>
+
+    <div class="warning-box">
+
+        <strong>Note</strong>
+
+        <p>
+            We recommend installing PlotJuggler on a separate
+            development computer rather than on the robot.
+        </p>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Setting Up PlotJuggler</h2>
+
+    <p>
+        EXOSUITES uses UDP communication to stream data.
+        Inside PlotJuggler:
+    </p>
+
+    <ol>
+
+        <li>Open PlotJuggler.</li>
+
+        <li>Select the Streaming tab.</li>
+
+        <li>Choose UDP from the available protocols.</li>
+
+        <li>Enter your local IP address.</li>
+
+        <li>Choose a port number greater than 1024.</li>
+
+        <li>Select JSON as the Message Protocol.</li>
+
+        <li>Add a timestamp field.</li>
+
+        <li>Click OK.</li>
+
+    </ol>
+
+</section>
+
+<section>
+
+    <h2>Finding Your IP Address</h2>
+
+    <p>
+        Use the following commands depending on your operating system:
+    </p>
+
+    <h3>Windows</h3>
+
+    <pre>
+```
+
+ipconfig </pre>
+
+```
+    <h3>Linux</h3>
+
+    <pre>
+```
+
+ifconfig </pre>
+
+```
+    <p>or</p>
+
+    <pre>
+```
+
+ip a </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Important Configuration Settings</h2>
+
+    <table>
+
+        <tr>
+            <th>Setting</th>
+            <th>Value</th>
+        </tr>
+
+        <tr>
+            <td>Protocol</td>
+            <td>UDP</td>
+        </tr>
+
+        <tr>
+            <td>Message Format</td>
+            <td>JSON</td>
+        </tr>
+
+        <tr>
+            <td>Port</td>
+            <td>Any value above 1024</td>
+        </tr>
+
+        <tr>
+            <td>Timestamp</td>
+            <td>Recommended</td>
+        </tr>
+
+    </table>
+
+</section>
+
+<section>
+
+    <h2>Network Requirements</h2>
+
+    <div class="warning-box">
+
+        <strong>Important</strong>
+
+        <p>
+            PlotJuggler can only communicate with devices located
+            on the same local network.
+        </p>
+
+        <p>
+            Internet-based connections are not supported.
+        </p>
+
+        <p>
+            Some managed enterprise or domain networks may block
+            UDP communication.
+        </p>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Using PlotJuggler in EXOSUITES</h2>
+
+    <p>
+        Import the visualization tools:
+    </p>
+
+    <pre>
+```
+
+from exosuites.toolbox import PlotJugglerUDPClient
+from exosuites.toolbox import TimedLoop
+import time
+import math </pre>
+
+```
+    <p>
+        Create a PlotJuggler client:
+    </p>
+
+    <pre>
+```
+
+pj_streamer = PlotJugglerUDPClient(
+addr='192.168.0.15',
+port=5556
+)
+
+loop = TimedLoop(30) </pre>
+
+```
+</section>
+
+<section>
+
+    <h2>Streaming Data Example</h2>
+
+    <pre>
+```
+
+while loop.continue_loop():
+
+```
+data_to_send = {
+
+    'example_data': {
+
+        'sine': math.sin(time.time()),
+        'cosine': math.cos(time.time())
+
+    },
+
+    'timestamp': time.time()
+
+}
+
+pj_streamer.send(data_to_send)
+    </pre>
+
+    <p>
+        This example streams sine and cosine wave data
+        continuously to PlotJuggler.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Why Use a Timestamp?</h2>
+
+    <p>
+        Including a timestamp field ensures smooth plotting
+        and accurate time synchronization.
+    </p>
+
+    <p>
+        Without timestamps, PlotJuggler will use packet arrival
+        times, which may introduce jitter or timing errors.
+    </p>
+
+</section>
+
+<section>
+
+    <h2>Additional PlotJuggler Resources</h2>
+
+    <ul>
+
+        <li>PlotJuggler User Guide</li>
+
+        <li>PlotJuggler GitHub Repository</li>
+
+        <li>ROS Integration Documentation</li>
+
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>Alternative Visualization Tools</h2>
+
+    <p>
+        Although PlotJuggler is recommended, the following tools
+        may also be useful:
+    </p>
+
+    <ul>
+
+        <li>Rerun</li>
+
+        <li>Teleplot</li>
+
+        <li>Foxglove</li>
+
+        <li>Dash (Python-based Web Dashboards)</li>
+
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>Verification Checklist</h2>
+
+    <ul>
+
+        <li>PlotJuggler installed successfully.</li>
+
+        <li>UDP communication enabled.</li>
+
+        <li>Correct IP address configured.</li>
+
+        <li>Port configured properly.</li>
+
+        <li>JSON protocol selected.</li>
+
+        <li>Timestamp included.</li>
+
+        <li>Data visible in PlotJuggler.</li>
+
+    </ul>
+
+</section>
+```
+
+</main>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actuators | EXOSUITES</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <h2 class="logo-text">EXOSUITES</h2>
+    <p class="institute">CSIR-CMERI</p>
+
+    <button id="theme-toggle" class="theme-btn">
+        🌙 Toggle Theme
+    </button>
+
+    <input type="text" placeholder="Search..." class="search-box">
+
+    <nav class="docs-nav">
+
+        <a href="../index.html">Home</a>
+        <a href="about.html">Getting Started</a>
+
+        <div class="nav-group">
+
+            <button class="dropdown-btn">
+                Methodology
+                <span>⌃</span>
+            </button>
+
+            <div class="dropdown-content">
+
+                <a href="actuators.html" class="active">Actuators</a>
+                <a href="single_board_computers.html">Single Board Computers</a>
+                <a href="imus.html">IMUs</a>
+                <a href="mechatronics.html">Mechatronics</a>
+                <a href="python_environment.html">Python Environment</a>
+                <a href="visualization.html">Visualization</a>
+
+            </div>
+
+        </div>
+
+        <a href="publications.html">Publications</a>
+        <a href="results.html">Results</a>
+
+    </nav>
+
+</aside>
+
+<main class="content">
+
+    <section>
+        <h1>Actuators</h1>
+
+        <p>
+            This section outlines the setup process required for the supported
+            actuator brands: CubeMars, RobStride, and CyberGear. Each has its own
+            initial setup process, but operation in EXOSUITES will view them as
+            approximately the same, and different brands and motor types can be
+            operated simultaneously in the same setup.
+        </p>
+    </section>
+
+    <section>
+        <h2>CubeMars AK Series Actuators</h2>
+
+        <p>
+            The CubeMars actuators in the system should run right out of the box
+            with no issue. Each one has a default ID for CAN communication,
+            usually CAN_ID = 0 or 1 by default.
+        </p>
+
+        <p>
+            If there are multiple actuators in the system that are all connected
+            over the same CAN wiring network, their CAN IDs must be differentiated
+            so that commands to one are not interpreted by another.
+        </p>
+
+        <p>
+            Each actuator’s CAN ID can be set from 0–127 using the custom flashing
+            software and serial port module called Rubik Link or R-Link from
+            CubeMars.
+        </p>
+
+        <p>
+            The version of the R-Link module and flashing software to use depends
+            on the version of AK-series actuator being configured. The possible
+            versions are V1.0, V2.0, or V3.0.
+        </p>
+    </section>
+
+    <section>
+        <h2>Required Components</h2>
+
+        <p>
+            To change CAN IDs, the following components and items are required:
+        </p>
+
+        <ol>
+            <li>Computer running Windows 10 or Windows 11.</li>
+            <li>CubeMars AK-series actuator or actuators.</li>
+            <li>
+                Power cable connecting battery to actuator through E-stop.
+                See the <a href="mechatronics.html">Mechatronics</a> section.
+            </li>
+            <li>
+                R-Link unit:
+                <ul>
+                    <li>V1.0: Silver serial port module labeled “R-Link”.</li>
+                    <li>V2.0: Silver metal serial port module labeled “R-Link V2.0”.</li>
+                    <li>V3.0: Silver metal serial port module labeled “R-Link V3.0”.</li>
+                </ul>
+            </li>
+            <li>
+                Actuator configuration software. Different CubeMars tools may be
+                required depending on actuator version.
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>CAN ID Configuration</h2>
+
+        <p>
+            CAN IDs allow the controller to identify and communicate with each
+            actuator individually. When using multiple actuators on the same CAN
+            network, every actuator must have a unique CAN ID.
+        </p>
+
+        <p>
+            If two actuators share the same CAN ID, both may respond to the same
+            command, which can cause incorrect motion or communication errors.
+        </p>
+    </section>
+
+    <section>
+        <h2>RobStride and CyberGear Actuators</h2>
+
+        <p>
+            RobStride and CyberGear actuators also require correct wiring,
+            communication setup, and actuator ID configuration before operation.
+        </p>
+
+        <p>
+            After configuration, these actuators can be operated alongside other
+            supported motors in the EXOSUITES platform.
+        </p>
+    </section>
+
+</main>
+
+<script src="../script.js"></script>
+
+</body>
+</html>
